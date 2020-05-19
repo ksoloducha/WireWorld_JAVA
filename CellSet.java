@@ -5,9 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Scanner;
 
-public class CellSet {
+public class CellSet implements Iterable<Cell> {
 
     private Cell[] set;
     private int xSize;
@@ -115,5 +116,28 @@ public class CellSet {
                 }
             }
         }
+    }
+
+    @Override
+    public Iterator<Cell> iterator() {
+        return new Iterator<Cell>() {
+
+            private final Cell[] setCopy = new Cell[xSize * ySize];
+            private int iterator = 0;
+
+            {
+                System.arraycopy(set, 0, setCopy, 0, xSize * ySize);
+            }
+
+            @Override
+            public boolean hasNext() {
+                return iterator < setCopy.length;
+            }
+
+            @Override
+            public Cell next() {
+                return setCopy[iterator++];
+            }
+        };
     }
 }
