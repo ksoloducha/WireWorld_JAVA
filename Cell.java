@@ -28,13 +28,14 @@ public class Cell {
         this.y = y;
     }
 
-    public void setState(String state) throws IOException {
+    public void setState(String state) {
 
-        if (StateType.isStateType(state)) {
+        /*if (StateType.isStateType(state)) {
             this.state = StateType.valueOf(state);
         } else {
             throw new IOException(state + ": Not state type");
-        }
+        }*/
+        this.state = StateType.valueOf(state);
     }
 
     public int getX() {

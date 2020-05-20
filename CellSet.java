@@ -52,14 +52,10 @@ public class CellSet implements Iterable<Cell> {
 
     public void setCellState(int x, int y, String state) {
 
-        try {
             set[x + y * this.getXSize()].setState(state);
-        } catch (IOException e) {
-            System.out.println(e.getLocalizedMessage());
-        }
     }
 
-    public void createCellSetFromFile(String fileName) {
+    public void createCellSetFromFile(String fileName) throws Exception {
 
         try {
             Scanner readFile = new Scanner(new File(fileName));
@@ -91,14 +87,22 @@ public class CellSet implements Iterable<Cell> {
 
                 int x = Integer.parseInt(words[1]);
                 int y = Integer.parseInt(words[2]);
+                
+                if(x > xMax)
+                    xMax = x;
+                if(y > yMax)
+                    yMax = y;
 
-                this.setCellState(x, y, words[0]);
+                if(StateType.isStateType(words[0]))
+                    this.setCellState(x, y, words[0]);
+                else
+                    throw new Exception("Wrong file format");
             }
 
         } catch (FileNotFoundException | NumberFormatException e1) {
-            System.out.println(e1.getLocalizedMessage());
+            throw e1;
         } catch (Exception e2) {
-            System.out.println(e2.getLocalizedMessage());
+            throw e2;
         }
     }
 
@@ -115,6 +119,62 @@ public class CellSet implements Iterable<Cell> {
                 } else {
                 }
             }
+        }
+    }
+
+    public void generateNext() {
+
+        CellSet copy = new CellSet();
+        copy.initCellSet(xSize, ySize);
+        for (Cell c : copy) {
+            if (!this.getCellState(c.getX(), c.getY()).equals("Empty")) {
+                    c.setState(this.getCellState(c.getX(), c.getY()));
+            }
+        }
+
+        for (Cell c : copy) {
+
+            switch (c.getState()) {
+                case "Empty":
+                    break;
+                case "ElectronHead":
+                    this.setCellState(c.getX(), c.getY(), "ElectronTail");
+                    break;
+                case "ElectronTail":
+                    this.setCellState(c.getX(), c.getY(), "Conductor");
+                    break;
+                default:
+                    int electronHeadNeighbours = 0;
+                    for (int i = -1; i <= 1; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            int x = i;
+                            int y = j;
+                            if (c.getX() + i < 0) {
+                                x = copy.xSize - 1;
+                            } else if (c.getX() + i >= this.xSize) {
+                                x = 0;
+                            }
+                            if (c.getY() + j < 0) {
+                                y = copy.ySize - 1;
+                            } else if (c.getY() + j >= this.ySize) {
+                                y = 0;
+                            }
+                            if (i == 0 && j == 0) {
+                            } else {
+                                if (copy.getCellState(c.getX() + x, c.getY() + y).equals("ElectronHead")) {
+                                    electronHeadNeighbours++;
+                                }
+                            }
+                        }
+                    }
+                    if (electronHeadNeighbours == 1 || electronHeadNeighbours == 2) {
+                        this.setCellState(c.getX(), c.getY(), "ElectronHead");
+                    } else {
+                        this.setCellState(c.getX(), c.getY(), "Conductor");
+                    }
+                    break;
+            }
+
         }
     }
 

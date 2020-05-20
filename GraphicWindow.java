@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class GraphicWindow extends JFrame {
 
@@ -12,16 +14,21 @@ public class GraphicWindow extends JFrame {
     private final int yMax = 700;
     private double scale = 1;
     CellSet myCellSet;
+    private int numberOfGenerations = 0;
 
-    public GraphicWindow(CellSet myCellSet) {
+    public GraphicWindow(CellSet myCellSet, int numberOfGenerations) {
 
         this.myCellSet = myCellSet;
+        this.numberOfGenerations = numberOfGenerations;
         this.setScale();
         this.setTitle("Wire World Simulation");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(new Draw(), BorderLayout.CENTER);
         this.setVisible(true);
         this.getContentPane().setBackground(Color.black);
+
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(5);
+        executor.scheduleAtFixedRate(new RepaintTheWindow(this), 0L, 200L, TimeUnit.MILLISECONDS);
     }
 
     private void setScale() {
@@ -37,6 +44,21 @@ public class GraphicWindow extends JFrame {
         this.setSize((int) Math.ceil(this.scale * xSize) + 15, (int) Math.ceil(this.scale * ySize) + 40);
     }
 
+    private class RepaintTheWindow implements Runnable {
+
+        private final GraphicWindow theGraphicWindow;
+
+        public RepaintTheWindow(GraphicWindow theGraphicWindow) {
+            this.theGraphicWindow = theGraphicWindow;
+        }
+
+        @Override
+        public void run() {
+            this.theGraphicWindow.repaint();
+        }
+
+    }
+
     private class Draw extends JComponent {
 
         @Override
@@ -46,19 +68,9 @@ public class GraphicWindow extends JFrame {
 
             graph2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            int x, y;
-            x = y = 0;
-
             for (Cell c : myCellSet) {
 
                 Shape drawCell = new Rectangle2D.Double(c.getX() * scale, c.getY() * scale, scale, scale);
-
-                if (c.getX() > x) {
-                    x = c.getX();
-                }
-                if (c.getY() > y) {
-                    y = c.getY();
-                }
 
                 switch (c.getState()) {
                     case "Empty":
@@ -82,6 +94,9 @@ public class GraphicWindow extends JFrame {
                         graph2.draw(drawCell);
                         break;
                 }
+            }
+            if (numberOfGenerations-- > 0) {
+                myCellSet.generateNext();
             }
         }
     }
