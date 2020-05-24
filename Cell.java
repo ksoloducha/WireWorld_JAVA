@@ -2,6 +2,7 @@ package WireWorld;
 
 import java.io.IOException;
 
+//single cell in set
 public class Cell {
 
     private int x;
@@ -29,12 +30,6 @@ public class Cell {
     }
 
     public void setState(String state) {
-
-        /*if (StateType.isStateType(state)) {
-            this.state = StateType.valueOf(state);
-        } else {
-            throw new IOException(state + ": Not state type");
-        }*/
         this.state = StateType.valueOf(state);
     }
 

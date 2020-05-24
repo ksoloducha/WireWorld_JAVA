@@ -1,19 +1,17 @@
 package WireWorld;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class CellSet implements Iterable<Cell> {
 
+    //set of all cells on the board
     private Cell[] set;
+    //board size
     private int xSize;
     private int ySize;
 
+    //initializes new set (size x, y) with empty cells only
     public void initCellSet(int x, int y) {
         this.xSize = x;
         this.ySize = y;
@@ -24,20 +22,13 @@ public class CellSet implements Iterable<Cell> {
                 try {
                     this.set[i + j * x] = new Cell(i, j, "Empty");
                 } catch (IOException e) {
-                    System.out.println(e.getLocalizedMessage());
+                    //there is state "Empty" among possible cell states               
                 }
             }
         }
     }
 
-    public void setXSize(int x) {
-        this.xSize = x;
-    }
-
-    public void setYSize(int y) {
-        this.ySize = y;
-    }
-
+    //get board size
     public int getXSize() {
         return this.xSize;
     }
@@ -46,57 +37,67 @@ public class CellSet implements Iterable<Cell> {
         return this.ySize;
     }
 
+    //get string representation of cell state (placed on (x, y) position)
     public String getCellState(int x, int y) {
-        return set[x + y * this.getXSize()].getState();
+        return set[x + y * this.xSize].getState();
     }
 
+    //set state of cell placed on (x, y) position
     public void setCellState(int x, int y, String state) {
 
-            set[x + y * this.getXSize()].setState(state);
+        set[x + y * this.xSize].setState(state);
     }
 
+    //create cell set based on information in given file
     public void createCellSetFromFile(String fileName) throws Exception {
 
         try {
+            //Scanner for reading file and LineNumberReader for defining wrong file format
             Scanner readFile = new Scanner(new File(fileName));
+            LineNumberReader lineNumber = new LineNumberReader(new FileReader(fileName));
 
-            int xMax, yMax;
-
-            if (!readFile.hasNextInt()) {
-                throw new Exception("Wrong file format");
+            //first line (or first two lines) of file should contain board size
+            if (readFile.hasNextInt()) {
+                this.xSize = readFile.nextInt();
             } else {
-                xMax = readFile.nextInt();
+                throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
             }
 
-            if (!readFile.hasNextInt()) {
-                throw new Exception("Wrong file format");
+            if (readFile.hasNextInt()) {
+                this.ySize = readFile.nextInt();
             } else {
-                yMax = readFile.nextInt();
+                throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
             }
 
             readFile.nextLine();
 
-            this.initCellSet(xMax, yMax);
+            this.initCellSet(this.xSize, this.ySize);
 
             while (readFile.hasNextLine()) {
+
+                //each line should contain information: <state_type>: <x_pos>, <y_pos>
                 String[] words = readFile.nextLine().split("[,: ]+");
+                lineNumber.readLine();
 
                 if (words.length != 3) {
-                    throw new Exception("Wrong file format");
+                    throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
                 }
 
                 int x = Integer.parseInt(words[1]);
                 int y = Integer.parseInt(words[2]);
-                
-                if(x > xMax)
-                    xMax = x;
-                if(y > yMax)
-                    yMax = y;
 
-                if(StateType.isStateType(words[0]))
+                if (x >= this.xSize) {
+                    throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                }
+                if (y >= this.ySize) {
+                    throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                }
+
+                if (StateType.isStateType(words[0])) {
                     this.setCellState(x, y, words[0]);
-                else
-                    throw new Exception("Wrong file format");
+                } else {
+                    throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                }
             }
 
         } catch (FileNotFoundException | NumberFormatException e1) {
@@ -110,9 +111,12 @@ public class CellSet implements Iterable<Cell> {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false))) {
 
+            //if file exists, clean it
             writer.flush();
+            //first line contains board size
             writer.write(this.getXSize() + " " + this.getYSize() + "\n");
 
+            //each line contains information: <state_type>: <x_pos>, <y_pos>
             for (Cell c : this.set) {
                 if (!c.getState().equals("Empty")) {
                     writer.write(c.getState() + ": " + c.getX() + ", " + c.getY() + "\n");
@@ -122,13 +126,15 @@ public class CellSet implements Iterable<Cell> {
         }
     }
 
+    //creates new generation (Silverman rules, Moore's neighborhood)
     public void generateNext() {
 
+        //set's copy to check neighbors's states
         CellSet copy = new CellSet();
         copy.initCellSet(xSize, ySize);
         for (Cell c : copy) {
             if (!this.getCellState(c.getX(), c.getY()).equals("Empty")) {
-                    c.setState(this.getCellState(c.getX(), c.getY()));
+                c.setState(this.getCellState(c.getX(), c.getY()));
             }
         }
 
@@ -136,19 +142,24 @@ public class CellSet implements Iterable<Cell> {
 
             switch (c.getState()) {
                 case "Empty":
+                    //empty cell remains empty
                     break;
                 case "ElectronHead":
+                    //electron head becomes electron tail
                     this.setCellState(c.getX(), c.getY(), "ElectronTail");
                     break;
                 case "ElectronTail":
+                    //electron tail becomes conductor
                     this.setCellState(c.getX(), c.getY(), "Conductor");
                     break;
                 default:
+                    //cell becomes electron head when exactly 1 or 2 of it's neighbor's are electron heads
                     int electronHeadNeighbours = 0;
                     for (int i = -1; i <= 1; i++) {
                         for (int j = -1; j <= 1; j++) {
                             int x = i;
                             int y = j;
+                            //connecting board'sends
                             if (c.getX() + i < 0) {
                                 x = copy.xSize - 1;
                             } else if (c.getX() + i >= this.xSize) {
@@ -170,6 +181,7 @@ public class CellSet implements Iterable<Cell> {
                     if (electronHeadNeighbours == 1 || electronHeadNeighbours == 2) {
                         this.setCellState(c.getX(), c.getY(), "ElectronHead");
                     } else {
+                        //in any other case cell becomes conductor
                         this.setCellState(c.getX(), c.getY(), "Conductor");
                     }
                     break;
@@ -178,6 +190,7 @@ public class CellSet implements Iterable<Cell> {
         }
     }
 
+    //to iterate over cells in cellset
     @Override
     public Iterator<Cell> iterator() {
         return new Iterator<Cell>() {
