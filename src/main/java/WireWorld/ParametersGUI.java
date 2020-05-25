@@ -94,7 +94,7 @@ public class ParametersGUI extends JFrame {
 
                     } else if (generationsTextField.getText().equals("")) {
 
-                        inputFile = "..\\WireWorld\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
+                        inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
 
                         if (!(new File(inputFile).exists())) {
                             throw new Exception(fileTextField.getText() + "does not exist");
@@ -105,7 +105,7 @@ public class ParametersGUI extends JFrame {
 
                     } else {
 
-                        inputFile = "..\\WireWorld\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
+                        inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
 
                         if (!(new File(inputFile).exists())) {
                             throw new Exception(fileTextField.getText() + "does not exist");
