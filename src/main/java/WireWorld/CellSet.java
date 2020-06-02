@@ -79,8 +79,15 @@ public class CellSet implements Iterable<Cell> {
                 String[] words = readFile.nextLine().split("[,: ]+");
                 lineNumber.readLine();
 
-                if (words.length != 3) {
-                    throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                if (StateType.isStateType(words[0])){
+                    if (words.length != 3){
+                        throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                    }
+                }
+                if (StructureType.isStructureType(words[0])){
+                    if (words.length != 4 && words.length != 3){
+                        throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                    }
                 }
 
                 int x = Integer.parseInt(words[1]);
