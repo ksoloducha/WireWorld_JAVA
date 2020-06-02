@@ -1,0 +1,13 @@
+15 15
+Diode: 2, 3
+Diode: 2, 9
+XOR: 8, 6
+Conductor: 5, 3
+Conductor: 6, 3
+Conductor: 7, 3
+Conductor: 5, 9
+Conductor: 6, 9
+Conductor: 7, 9
+Conductor: 12, 6
+Conductor: 13, 6
+Conductor: 14, 6
