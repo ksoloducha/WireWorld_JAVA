@@ -10,10 +10,28 @@ public enum StateType {
         StateType[] states = StateType.values();
 
         for (StateType s : states) {
-            if (s.toString().toLowerCase().equals(name.toLowerCase())) {
+            
+            if (name.equalsIgnoreCase(s.toString())) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static StateType enumValueOf (String name) {
+        StateType[] states = StateType.values();
+
+        for (StateType s : states) {
+            
+            if (name.equalsIgnoreCase(s.toString())) {
+                return s;
+            }
+        }
+        return null;
+    }
+    
+    public static String getStringState(int n) {
+        StateType[] states = StateType.values();
+        return states[n].toString();
     }
 }

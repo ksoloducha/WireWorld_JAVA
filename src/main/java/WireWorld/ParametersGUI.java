@@ -97,7 +97,7 @@ public class ParametersGUI extends JFrame {
                         inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
 
                         if (!(new File(inputFile).exists())) {
-                            throw new Exception(fileTextField.getText() + "does not exist");
+                            throw new Exception(fileTextField.getText() + " does not exist");
                         }
 
                         numberOfGenerations = deafultNumberOfGenerations;
@@ -108,7 +108,7 @@ public class ParametersGUI extends JFrame {
                         inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
 
                         if (!(new File(inputFile).exists())) {
-                            throw new Exception(fileTextField.getText() + "does not exist");
+                            throw new Exception(fileTextField.getText() + " does not exist");
                         }
 
                         numberOfGenerations = Integer.parseInt(generationsTextField.getText());

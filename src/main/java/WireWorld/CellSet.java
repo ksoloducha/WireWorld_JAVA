@@ -79,12 +79,21 @@ public class CellSet implements Iterable<Cell> {
                 String[] words = readFile.nextLine().split("[,: ]+");
                 lineNumber.readLine();
 
-                if (words.length != 3) {
-                    throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                if (StateType.isStateType(words[0])){
+                    if (words.length != 3){
+                        throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                    }
+                }
+                if (StructureType.isStructureType(words[0])){
+                    if (words.length != 4 && words.length != 3){
+                        throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                    }
                 }
 
                 int x = Integer.parseInt(words[1]);
                 int y = Integer.parseInt(words[2]);
+                int z = 0;
+                int[] tab;
 
                 if (x >= this.xSize) {
                     throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
@@ -93,8 +102,17 @@ public class CellSet implements Iterable<Cell> {
                     throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
                 }
 
-                if (StateType.isStateType(words[0])) {
-                    this.setCellState(x, y, words[0]);
+                if (StateType.isStateType(words[0]) || StructureType.isStructureType(words[0])) {
+                     if (StateType.isStateType(words[0])) {
+                        this.setCellState(x, y, words[0]);
+                    }
+                     if (StructureType.isStructureType(words[0])) {
+                        tab = StructureType.setStructureInCellSet(x, y, z, words[0]);
+                        
+                        for (int i = 0; i < tab.length; i=i+3 ){
+                            this.setCellState(tab[i], tab[i+1], StateType.getStringState(tab[i+2]));
+                        }                         
+                    } 
                 } else {
                     throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
                 }

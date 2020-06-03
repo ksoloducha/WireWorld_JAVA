@@ -15,7 +15,7 @@ public class Cell {
         this.y = y;
 
         if (StateType.isStateType(state)) {
-            this.state = StateType.valueOf(state);
+            this.state = StateType.enumValueOf(state);
         } else {
             throw new IOException(state + ": Not state type");
         }
@@ -30,7 +30,7 @@ public class Cell {
     }
 
     public void setState(String state) {
-        this.state = StateType.valueOf(state);
+        this.state = StateType.enumValueOf(state);
     }
 
     public int getX() {
