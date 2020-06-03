@@ -16,4 +16,9 @@ public enum StateType {
         }
         return false;
     }
+    
+    public static String GetStringState(int n){
+        StateType[] states = StateType.values();
+        return states[n].toString();
+    }
 }
