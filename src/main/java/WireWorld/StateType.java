@@ -31,6 +31,7 @@ public enum StateType {
     }
     
     public static String getStringState(int n) {
+      
         StateType[] states = StateType.values();
         return states[n].toString();
     }

@@ -18,6 +18,7 @@ public enum  StructureType {
     }
     
     public static int[] setDiodeInCellSet (int x, int y) {
+  
         int[] tab = new int[] {x-2, y, 3,
                                x-1, y-1, 1,
                                x-1, y+1, 3,
@@ -31,6 +32,7 @@ public enum  StructureType {
     }
     
     public static int[] setXORInCellSet (int x, int y) {
+
         int[] tab = new int[] {x-1, y-1, 3,
                                x-1, y, 3,
                                x-1, y+1, 3,
@@ -47,7 +49,9 @@ public enum  StructureType {
                               };
         return tab;  
     }
+
     public static int[] setORInCellSet (int x, int y) {
+
         int[] tab = new int[] {x-1, y-1, 3,
                                x-1, y, 3,
                                x-1, y+1, 3,
@@ -69,6 +73,7 @@ public enum  StructureType {
         StructureType[] structures = StructureType.values();
         int[] tab = null;
         
+
         if (structure.equalsIgnoreCase(structures[0].toString())){
             tab = setDiodeInCellSet(x, y);
         }
@@ -77,6 +82,7 @@ public enum  StructureType {
         } 
         if (structure.equalsIgnoreCase(structures[2].toString())){
             tab = setXORInCellSet(x, y);
+
         }
         return tab; 
     }

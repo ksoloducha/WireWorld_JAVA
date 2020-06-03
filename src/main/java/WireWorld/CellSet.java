@@ -107,6 +107,7 @@ public class CellSet implements Iterable<Cell> {
                         this.setCellState(x, y, words[0]);
                     }
                      if (StructureType.isStructureType(words[0])) {
+
                         tab = StructureType.setStructureInCellSet(x, y, z, words[0]);
                         
                         for (int i = 0; i < tab.length; i=i+3 ){
