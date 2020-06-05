@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public enum  StructureType {
 
-    Diode, AND, OR, XOR, ClockGen1, ClockGen2, ClockGen3;
+    Diode, AND, OR, XOR, ClockGen1, ClockGen2, ClockGen3, LongConductor;
 
     public static boolean isStructureType(String name) {
 
@@ -163,6 +163,16 @@ public enum  StructureType {
         return tab;
     }
 
+    private static int[] SetLongConductorInCellSet (int x, int y){
+        int[] tab = new int[] {x-2, y, 3,
+                               x-1, y, 3,
+                               x, y, 3,
+                               x+1, y, 3,
+                               x+2, y, 3
+                              };
+        return tab;
+    }
+
     public static int[] GetSetupStructureInCellSet (int x, int y, int z, String structure) {
 
         StructureType[] structures = StructureType.values();
@@ -189,6 +199,9 @@ public enum  StructureType {
         }
         if (structure.equalsIgnoreCase(structures[6].toString())){
             tab = SetClockGen3InCellSet(x, y);
+        }
+        if (structure.equalsIgnoreCase(structures[7].toString())){
+            tab = SetLongConductorInCellSet(x, y);
         }
         tab = SetDirection(tab, x, y, z);
         return tab;
