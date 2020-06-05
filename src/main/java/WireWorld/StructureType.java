@@ -116,7 +116,6 @@ public enum  StructureType {
                                x+1, y+1, 3,
                                x+1, y+2, 3,
                                x+2, y-1, 3,
-                               x+2, y, 3,
                                x+2, y+1, 3,
                                x+3, y-1, 3,
                                x+3, y, 3,
