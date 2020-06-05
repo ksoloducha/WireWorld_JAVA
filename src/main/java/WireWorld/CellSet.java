@@ -111,12 +111,18 @@ public class CellSet implements Iterable<Cell> {
                 if (StateType.isStateType(words[0]) || StructureType.isStructureType(words[0])) {
                      if (StateType.isStateType(words[0])) {
                         this.setCellState(x, y, words[0]);
-                    }
+                     }
                      if (StructureType.isStructureType(words[0])) {
 
                         tab = StructureType.GetSetupStructureInCellSet(x, y, z, words[0]);
 
                         for (int i = 0; i < tab.length; i=i+3 ){
+                            if (tab[i] >= this.xSize) {
+                                throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                            }
+                            if (tab[i+1] >= this.ySize) {
+                                throw new Exception("Wrong file format at line " + (lineNumber.getLineNumber() + 1));
+                            }
                             this.setCellState(tab[i], tab[i+1], StateType.getStringState(tab[i+2]));
                         }
                     }
