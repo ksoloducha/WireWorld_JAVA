@@ -20,7 +20,7 @@ public enum  StructureType {
         return false;
     }
 
-    public static int[] SetDiodeInCellSet (int x, int y) {
+    public static int[] setDiodeInCellSet (int x, int y) {
 
         int[] tab = new int[] {x-1, y, 3,
                                x, y-1, 3,
@@ -33,7 +33,7 @@ public enum  StructureType {
         return tab;
     }
 
-    private static int[] SetANDInCellSet (int x, int y) {
+    private static int[] setANDInCellSet (int x, int y) {
         int[] tab = new int[] {x-8, y-3, 3,
                                x-8, y, 3,
                                x-7, y-3, 3,
@@ -79,7 +79,7 @@ public enum  StructureType {
         return tab;
     }
 
-    private static int[] SetORInCellSet (int x, int y) {
+    private static int[] setORInCellSet (int x, int y) {
         int[] tab = new int[] {x-3, y-1, 3,
                                x-3, y+1, 3,
                                x-2, y-1, 3,
@@ -97,7 +97,7 @@ public enum  StructureType {
         return tab;
     }
 
-    public static int[] SetXORInCellSet (int x, int y) {
+    public static int[] setXORInCellSet (int x, int y) {
         int[] tab = new int[] {x-4, y-1, 3,
                                x-4, y+1, 3,
                                x-3, y-1, 3,
@@ -125,7 +125,7 @@ public enum  StructureType {
         return tab;
     }
 
-    private static int[] SetClockGen1InCellSet (int x, int y) {
+    private static int[] setClockGen1InCellSet (int x, int y) {
         int[] tab = new int[] {x-1, y, 2,
                                x, y-1, 1,
                                x, y+1, 3,
@@ -133,7 +133,7 @@ public enum  StructureType {
                               };
         return tab;
     }
-    private static int[] SetClockGen2InCellSet (int x, int y) {
+    private static int[] setClockGen2InCellSet (int x, int y) {
         int[] tab = new int[] {x-2, y, 2,
                                x-1, y-1, 1,
                                x-1, y+1, 3,
@@ -146,7 +146,7 @@ public enum  StructureType {
         return tab;
     }
 
-    private static int[] SetClockGen3InCellSet (int x, int y) {
+    private static int[] setClockGen3InCellSet (int x, int y) {
         int[] tab = new int[] {x-3, y, 2,
                                x-2, y-1, 1,
                                x-2, y+1, 3,
@@ -163,7 +163,7 @@ public enum  StructureType {
         return tab;
     }
 
-    private static int[] SetLongConductorInCellSet (int x, int y){
+    private static int[] setLongConductorInCellSet (int x, int y){
         int[] tab = new int[] {x-2, y, 3,
                                x-1, y, 3,
                                x, y, 3,
@@ -173,57 +173,57 @@ public enum  StructureType {
         return tab;
     }
 
-    public static int[] GetSetupStructureInCellSet (int x, int y, int z, String structure) {
+    public static int[] getSetupStructureInCellSet (int x, int y, int z, String structure) {
 
         StructureType[] structures = StructureType.values();
         int[] tab = null;
 
 
         if (structure.equalsIgnoreCase(structures[0].toString())){
-            tab = SetDiodeInCellSet(x, y);
+            tab = setDiodeInCellSet(x, y);
         }
         if (structure.equalsIgnoreCase(structures[1].toString())){
-            tab = SetANDInCellSet(x, y);
+            tab = setANDInCellSet(x, y);
         }
         if (structure.equalsIgnoreCase(structures[2].toString())){
-            tab = SetORInCellSet(x, y);
+            tab = setORInCellSet(x, y);
         }
         if (structure.equalsIgnoreCase(structures[3].toString())){
-            tab = SetXORInCellSet(x, y);
+            tab = setXORInCellSet(x, y);
         }
         if (structure.equalsIgnoreCase(structures[4].toString())){
-            tab = SetClockGen1InCellSet(x, y);
+            tab = setClockGen1InCellSet(x, y);
         }
         if (structure.equalsIgnoreCase(structures[5].toString())){
-            tab = SetClockGen2InCellSet(x, y);
+            tab = setClockGen2InCellSet(x, y);
         }
         if (structure.equalsIgnoreCase(structures[6].toString())){
-            tab = SetClockGen3InCellSet(x, y);
+            tab = setClockGen3InCellSet(x, y);
         }
         if (structure.equalsIgnoreCase(structures[7].toString())){
-            tab = SetLongConductorInCellSet(x, y);
+            tab = setLongConductorInCellSet(x, y);
         }
-        tab = SetDirection(tab, x, y, z);
+        tab = setDirection(tab, x, y, z);
         return tab;
     }
 
-    private static int[] SetDirection(int[] tab, int x, int y, int z){
+    private static int[] setDirection(int[] tab, int x, int y, int z){
         if (z == 0){
             return tab;
         }
         if (z == 1){
-            return SetDirectionUp(tab, x, y);
+            return setDirectionUp(tab, x, y);
         }
         if (z == 2){
-            return SetDirectionHorizontal(tab, x);
+            return setDirectionHorizontal(tab, x);
         }
         if (z == 3){
-            return SetDirectionVertical(SetDirectionUp(tab, x, y), y);
+            return setDirectionVertical(setDirectionUp(tab, x, y), y);
         }
         return null;
     }
 
-    private static int[] SetDirectionHorizontal(int[] tab, int x){
+    private static int[] setDirectionHorizontal(int[] tab, int x){
         int tmp[] = Arrays.copyOf(tab, tab.length);
         for(int i = 0; i < tab.length; i=i+3){
             int k = tab[i] - x;
@@ -232,7 +232,7 @@ public enum  StructureType {
         return tmp;
     }
 
-    private static int[] SetDirectionVertical(int[] tab, int y){
+    private static int[] setDirectionVertical(int[] tab, int y){
         int tmp[] = Arrays.copyOf(tab, tab.length);
         for(int i = 0; i < tab.length; i=i+3){
             int k = tab[i+1] - y;
@@ -241,7 +241,7 @@ public enum  StructureType {
         return tmp;
     }
 
-    private static int[] SetDirectionUp(int[] tab, int x, int y){
+    private static int[] setDirectionUp(int[] tab, int x, int y){
         int tmp[] = Arrays.copyOf(tab, tab.length);
         for(int i = 0; i < tab.length; i=i+3){
             int xd = tab[i] - x;

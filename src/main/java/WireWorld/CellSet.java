@@ -114,7 +114,7 @@ public class CellSet implements Iterable<Cell> {
                      }
                      if (StructureType.isStructureType(words[0])) {
 
-                        tab = StructureType.GetSetupStructureInCellSet(x, y, z, words[0]);
+                        tab = StructureType.getSetupStructureInCellSet(x, y, z, words[0]);
 
                         for (int i = 0; i < tab.length; i=i+3 ){
                             if (tab[i] >= this.xSize) {
