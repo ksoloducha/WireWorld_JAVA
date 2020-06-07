@@ -8,8 +8,7 @@ import java.awt.geom.*;
 import java.io.IOException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class GraphicWindow extends JFrame {
 
@@ -66,9 +65,17 @@ public class GraphicWindow extends JFrame {
 
         @Override
         public void run() {
+            int n = constantNumberOfGenerations - numberOfGenerations;
+            if(n <= constantNumberOfGenerations){
+                try {
+                    myCellSet.saveCellSetToFile("..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\out_files\\output_" + n + ".txt");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
+                }
+            }
             this.theGraphicWindow.repaint();
         }
-
     }
 
     //specifies what to draw in frame
@@ -114,13 +121,6 @@ public class GraphicWindow extends JFrame {
             }
             if (numberOfGenerations-- > 0) {
                 myCellSet.generateNext();
-                int n = constantNumberOfGenerations - numberOfGenerations;
-                try {
-                    myCellSet.saveCellSetToFile("..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\out_files\\output_" + n + ".txt");
-                } catch (IOException ex) {
-                    Logger.getLogger(GraphicWindow.class.getName()).log(Level.SEVERE, null, ex);
-                    System.exit(0);
-                }
             }
         }
     }
