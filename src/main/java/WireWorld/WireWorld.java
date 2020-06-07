@@ -26,7 +26,7 @@ public class WireWorld {
                     cellSet.createCellSetFromFile(inputFileName);
 
                     try {
-                        cellSet.saveCellSetToFile("..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\out_files\\output.txt");
+                        cellSet.saveCellSetToFile("..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\out_files\\output_0.txt");
                     } catch (IOException e) {
                         JOptionPane.showMessageDialog(gui, e.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         System.exit(0);

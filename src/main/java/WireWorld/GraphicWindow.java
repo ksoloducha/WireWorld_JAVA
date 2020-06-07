@@ -5,8 +5,11 @@ import javax.swing.JFrame;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.io.IOException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GraphicWindow extends JFrame {
 
@@ -16,11 +19,13 @@ public class GraphicWindow extends JFrame {
     private double scale = 1;
     CellSet myCellSet;
     private int numberOfGenerations = 0;
+    private int constantNumberOfGenerations = 0;
 
     public GraphicWindow(CellSet myCellSet, int numberOfGenerations) {
 
         this.myCellSet = myCellSet;
         this.numberOfGenerations = numberOfGenerations;
+        this.constantNumberOfGenerations = numberOfGenerations;
         this.setScale();
         this.setTitle("Wire World Simulation");
         //defines how frame closes
@@ -109,6 +114,13 @@ public class GraphicWindow extends JFrame {
             }
             if (numberOfGenerations-- > 0) {
                 myCellSet.generateNext();
+                int n = constantNumberOfGenerations - numberOfGenerations;
+                try {
+                    myCellSet.saveCellSetToFile("..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\out_files\\output_" + n + ".txt");
+                } catch (IOException ex) {
+                    Logger.getLogger(GraphicWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    System.exit(0);
+                }
             }
         }
     }
