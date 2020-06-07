@@ -7,11 +7,11 @@ import javax.swing.JOptionPane;
 
 public class WireWorld {
 
-    private static String inputFileName = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\defaultInput.txt";
+    private static String inputFileName = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\defaultInput.txt";
     private static int numberOfGenerations;
 
     public static void main(String[] args) {
-        
+
         CellSet cellSet = new CellSet();
 
         ParametersGUI gui = new ParametersGUI(50, inputFileName);
@@ -26,7 +26,7 @@ public class WireWorld {
                     cellSet.createCellSetFromFile(inputFileName);
 
                     try {
-                        cellSet.saveCellSetToFile("..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\output.txt");
+                        cellSet.saveCellSetToFile("..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\out_files\\output.txt");
                     } catch (IOException e) {
                         JOptionPane.showMessageDialog(gui, e.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         System.exit(0);
