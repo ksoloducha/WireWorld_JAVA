@@ -2,8 +2,6 @@ package WireWorld;
 
 import java.util.Arrays;
 
-
-
 public enum  StructureType {
 
     Diode, AND, OR, XOR, ClockGen1, ClockGen2, ClockGen3, LongConductor, NAND;

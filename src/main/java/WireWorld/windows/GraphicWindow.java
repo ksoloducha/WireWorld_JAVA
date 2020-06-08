@@ -1,5 +1,7 @@
-package WireWorld;
+package WireWorld.windows;
 
+import WireWorld.Cell;
+import WireWorld.CellSet;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 

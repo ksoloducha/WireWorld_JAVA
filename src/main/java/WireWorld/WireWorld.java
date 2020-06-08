@@ -1,13 +1,17 @@
 package WireWorld;
 
-import java.awt.event.*;
+import WireWorld.windows.ParametersGUI;
+import WireWorld.windows.GraphicWindow;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class WireWorld {
 
-    private static String inputFileName = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\defaultInput.txt";
+    private static String inputFileName = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\default_input.txt";
     private static int numberOfGenerations;
 
     public static void main(String[] args) {

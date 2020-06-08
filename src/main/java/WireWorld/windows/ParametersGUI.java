@@ -1,4 +1,4 @@
-package WireWorld;
+package WireWorld.windows;
 
 import java.awt.Dimension;
 import javax.swing.*;
@@ -9,7 +9,11 @@ public class ParametersGUI extends JFrame {
 
     JButton set, setDefault;
     JTextField fileTextField, generationsTextField;
-    JLabel fileLabel, generationsLabel;
+    JLabel generationsLabel, fileLabel, myFileLabel;
+    JList fileList;
+    JScrollPane scroller;
+
+    String[] files = {"default_input.txt", "blah", "direct_test.txt", "structures_test.txt"};
 
     private int numberOfGenerations;
     private final int deafultNumberOfGenerations;
@@ -22,40 +26,49 @@ public class ParametersGUI extends JFrame {
         this.defaultInputFile = defaultInputFile;
 
         //defaults for frame
-        this.setSize(400, 220);
+        this.setSize(400, 310);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Set simulation parameters");
 
         //contains all components
         JPanel thePanel = new JPanel();
-        //vertical arrangement of elements
-        thePanel.setLayout(new BoxLayout(thePanel, BoxLayout.Y_AXIS));
         thePanel.setBorder(BorderFactory.createEmptyBorder(10, WIDTH + 10, ABORT, HEIGHT + 10));
+        
+        //creating panel elements
+        fileLabel = new JLabel("Input file");      
 
-        //contains buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(15, 140, 10, 10));
-
-        fileLabel = new JLabel("Input file");
+        //creating a List Box
+        fileList = new JList(files);        
+        //define size of each cell
+        fileList.setFixedCellHeight(30);
+        fileList.setFixedCellWidth(220);    
+        
+        myFileLabel = new JLabel("  My input file");
         fileTextField = new JTextField("", 15);
+        
         generationsLabel = new JLabel("Number of generations");
         generationsTextField = new JTextField("", 15);
+        
         set = new JButton("      set       ");
         setDefault = new JButton("set default");
 
+        //adding elements to panel
         thePanel.add(fileLabel);
+        thePanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        thePanel.add(fileList);
+        thePanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        thePanel.add(myFileLabel);
+        thePanel.add(Box.createRigidArea(new Dimension(10, 0)));
         thePanel.add(fileTextField);
-        thePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        thePanel.add(Box.createRigidArea(new Dimension(0, 30)));
         thePanel.add(generationsLabel);
+        thePanel.add(Box.createRigidArea(new Dimension(10, 0)));
         thePanel.add(generationsTextField);
-
-        buttonPanel.add(set);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(setDefault);
-
-        thePanel.add(buttonPanel);
+        thePanel.add(Box.createRigidArea(new Dimension(0, 40)));
+        thePanel.add(set);
+        thePanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        thePanel.add(setDefault);
 
         ListenForButton lForButton = new ListenForButton();
         set.addActionListener(lForButton);
@@ -63,8 +76,6 @@ public class ParametersGUI extends JFrame {
 
         this.add(thePanel);
         this.setVisible(true);
-
-        fileTextField.requestFocus();
     }
 
     public String getInputFileName() {
@@ -83,8 +94,22 @@ public class ParametersGUI extends JFrame {
 
                 try {
                     //user can insert both parameters, one or choose default values
+                    if(! fileList.isSelectionEmpty() && fileTextField.getText().equals("")){
+                        
+                        inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\" + fileList.getSelectedValue();
 
-                    if (fileTextField.getText().equals("") && generationsTextField.getText().equals("")) {
+                        if (!(new File(inputFile).exists())) {
+                            throw new Exception(fileList.getSelectedValue() + " does not exist");
+                        }
+                        
+                        if(! generationsTextField.getText().equals(""))
+                            numberOfGenerations = Integer.parseInt(generationsTextField.getText());
+                        else
+                            numberOfGenerations = deafultNumberOfGenerations;
+                        
+                        ParametersGUI.super.dispose();
+                    }                    
+                    else if (fileTextField.getText().equals("") && generationsTextField.getText().equals("")) {
                         JOptionPane.showMessageDialog(ParametersGUI.this, "Please enter the right info or choose \"Set defalut\" button", "Error", JOptionPane.ERROR_MESSAGE);
                     } else if (fileTextField.getText().equals("")) {
 
