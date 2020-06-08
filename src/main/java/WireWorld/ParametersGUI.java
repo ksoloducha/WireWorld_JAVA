@@ -83,7 +83,7 @@ public class ParametersGUI extends JFrame {
 
                 try {
                     //user can insert both parameters, one or choose default values
-                    
+
                     if (fileTextField.getText().equals("") && generationsTextField.getText().equals("")) {
                         JOptionPane.showMessageDialog(ParametersGUI.this, "Please enter the right info or choose \"Set defalut\" button", "Error", JOptionPane.ERROR_MESSAGE);
                     } else if (fileTextField.getText().equals("")) {
@@ -94,7 +94,7 @@ public class ParametersGUI extends JFrame {
 
                     } else if (generationsTextField.getText().equals("")) {
 
-                        inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
+                        inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\" + fileTextField.getText();
 
                         if (!(new File(inputFile).exists())) {
                             throw new Exception(fileTextField.getText() + " does not exist");
@@ -105,7 +105,7 @@ public class ParametersGUI extends JFrame {
 
                     } else {
 
-                        inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_out_files\\" + fileTextField.getText();
+                        inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\" + fileTextField.getText();
 
                         if (!(new File(inputFile).exists())) {
                             throw new Exception(fileTextField.getText() + " does not exist");
@@ -119,7 +119,7 @@ public class ParametersGUI extends JFrame {
                     JOptionPane.showMessageDialog(ParametersGUI.this, "Please enter the right number of generations", "Error", JOptionPane.ERROR_MESSAGE);
                     numberOfGenerations = deafultNumberOfGenerations;
                 } catch (Exception ex2) {
-                    JOptionPane.showMessageDialog(ParametersGUI.this, ex2.getLocalizedMessage() + "\n Make sure that you put " + fileTextField.getText() + " file in in_out_files folder \n and insert correct file extension.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ParametersGUI.this, ex2.getLocalizedMessage() + "\n Make sure that you put " + fileTextField.getText() + " file in in_files folder \n and insert correct file extension.", "Error", JOptionPane.ERROR_MESSAGE);
                     inputFile = defaultInputFile;
 
                 }
