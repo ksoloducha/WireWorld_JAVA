@@ -144,7 +144,7 @@ public class ParametersGUI extends JFrame {
                     JOptionPane.showMessageDialog(ParametersGUI.this, "Please enter the right number of generations", "Error", JOptionPane.ERROR_MESSAGE);
                     numberOfGenerations = deafultNumberOfGenerations;
                 } catch (Exception ex2) {
-                    JOptionPane.showMessageDialog(ParametersGUI.this, ex2.getLocalizedMessage() + "\n Make sure that you put " + fileTextField.getText() + " file in in_files folder \n and insert correct file extension.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ParametersGUI.this, ex2.getLocalizedMessage() + "\n Make sure that you put chosen file in in_files folder \n and insert correct file extension.", "Error", JOptionPane.ERROR_MESSAGE);
                     inputFile = defaultInputFile;
 
                 }

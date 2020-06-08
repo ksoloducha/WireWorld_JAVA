@@ -46,7 +46,7 @@ Conductor: 51, 9
 Conductor: 52, 9
 Conductor: 53, 9
 ElectronHead: 60, 9
-ElectronHead: 69, 9
+Conductor: 69, 9
 Conductor: 70, 9
 Conductor: 71, 9
 ElectronHead: 81, 9
@@ -59,7 +59,7 @@ Conductor: 103, 9
 Conductor: 106, 9
 Conductor: 107, 9
 Conductor: 109, 9
-Conductor: 112, 9
+ElectronTail: 112, 9
 Conductor: 4, 10
 Conductor: 5, 10
 Conductor: 7, 10
@@ -77,8 +77,8 @@ Conductor: 53, 10
 Conductor: 54, 10
 ElectronTail: 59, 10
 Conductor: 61, 10
-ElectronTail: 68, 10
-Conductor: 72, 10
+Conductor: 68, 10
+ElectronTail: 72, 10
 ElectronTail: 80, 10
 Conductor: 86, 10
 Conductor: 91, 10
@@ -88,9 +88,9 @@ Conductor: 94, 10
 Conductor: 95, 10
 Conductor: 105, 10
 ElectronHead: 108, 10
-Conductor: 111, 10
-Conductor: 112, 10
-Conductor: 113, 10
+ElectronHead: 111, 10
+ElectronHead: 112, 10
+ElectronHead: 113, 10
 Conductor: 114, 10
 Conductor: 5, 11
 Conductor: 6, 11
@@ -114,7 +114,7 @@ Conductor: 53, 11
 Conductor: 60, 11
 Conductor: 69, 11
 Conductor: 70, 11
-Conductor: 71, 11
+ElectronHead: 71, 11
 Conductor: 81, 11
 Conductor: 82, 11
 Conductor: 83, 11
@@ -125,7 +125,7 @@ Conductor: 103, 11
 Conductor: 106, 11
 ElectronTail: 107, 11
 Conductor: 109, 11
-Conductor: 112, 11
+ElectronTail: 112, 11
 Conductor: 15, 12
 Conductor: 17, 12
 Conductor: 22, 12
@@ -163,7 +163,7 @@ Conductor: 20, 23
 Conductor: 19, 24
 Conductor: 108, 24
 Conductor: 18, 25
-Conductor: 108, 25
+ElectronHead: 108, 25
 Conductor: 18, 26
 Conductor: 20, 26
 Conductor: 21, 26
@@ -171,9 +171,9 @@ Conductor: 22, 26
 Conductor: 50, 26
 Conductor: 104, 26
 Conductor: 106, 26
-Conductor: 107, 26
-Conductor: 108, 26
-Conductor: 109, 26
+ElectronTail: 107, 26
+ElectronHead: 108, 26
+ElectronTail: 109, 26
 Conductor: 110, 26
 Conductor: 112, 26
 Conductor: 19, 27
@@ -185,7 +185,7 @@ Conductor: 83, 27
 Conductor: 103, 27
 Conductor: 104, 27
 Conductor: 105, 27
-Conductor: 108, 27
+ElectronHead: 108, 27
 Conductor: 111, 27
 Conductor: 112, 27
 Conductor: 113, 27
@@ -197,7 +197,7 @@ Conductor: 23, 28
 Conductor: 38, 28
 Conductor: 49, 28
 Conductor: 51, 28
-Conductor: 70, 28
+ElectronTail: 70, 28
 Conductor: 82, 28
 Conductor: 84, 28
 Conductor: 93, 28
@@ -219,7 +219,7 @@ Conductor: 49, 29
 Conductor: 51, 29
 Conductor: 52, 29
 Conductor: 60, 29
-Conductor: 69, 29
+ElectronHead: 69, 29
 Conductor: 71, 29
 Conductor: 82, 29
 Conductor: 84, 29
@@ -261,7 +261,7 @@ Conductor: 47, 31
 Conductor: 53, 31
 ElectronTail: 60, 31
 Conductor: 69, 31
-ElectronHead: 71, 31
+Conductor: 71, 31
 Conductor: 82, 31
 Conductor: 84, 31
 Conductor: 93, 31
@@ -277,7 +277,7 @@ Conductor: 37, 32
 Conductor: 39, 32
 Conductor: 48, 32
 Conductor: 52, 32
-ElectronTail: 70, 32
+Conductor: 70, 32
 Conductor: 82, 32
 ElectronHead: 84, 32
 Conductor: 93, 32
@@ -366,13 +366,13 @@ Conductor: 54, 49
 ElectronHead: 60, 49
 Conductor: 69, 49
 Conductor: 70, 49
-ElectronHead: 71, 49
+Conductor: 71, 49
 Conductor: 81, 49
 Conductor: 82, 49
 Conductor: 83, 49
 Conductor: 84, 49
 ElectronHead: 85, 49
-Conductor: 104, 49
+ElectronTail: 104, 49
 Conductor: 107, 49
 Conductor: 109, 49
 Conductor: 110, 49
@@ -395,8 +395,8 @@ Conductor: 47, 50
 Conductor: 50, 50
 Conductor: 59, 50
 ElectronTail: 61, 50
-Conductor: 68, 50
-ElectronTail: 72, 50
+ElectronTail: 68, 50
+Conductor: 72, 50
 Conductor: 80, 50
 ElectronTail: 86, 50
 Conductor: 91, 50
@@ -405,9 +405,9 @@ Conductor: 93, 50
 Conductor: 94, 50
 Conductor: 95, 50
 Conductor: 102, 50
-Conductor: 103, 50
-Conductor: 104, 50
-Conductor: 105, 50
+ElectronHead: 103, 50
+ElectronHead: 104, 50
+ElectronHead: 105, 50
 ElectronHead: 108, 50
 Conductor: 111, 50
 Conductor: 4, 51
@@ -430,7 +430,7 @@ Conductor: 50, 51
 Conductor: 53, 51
 Conductor: 54, 51
 Conductor: 60, 51
-Conductor: 69, 51
+ElectronHead: 69, 51
 Conductor: 70, 51
 Conductor: 71, 51
 Conductor: 81, 51
@@ -438,7 +438,7 @@ Conductor: 82, 51
 Conductor: 83, 51
 Conductor: 84, 51
 Conductor: 85, 51
-Conductor: 104, 51
+ElectronTail: 104, 51
 Conductor: 107, 51
 ElectronTail: 109, 51
 Conductor: 110, 51
@@ -516,7 +516,7 @@ Conductor: 37, 68
 Conductor: 39, 68
 Conductor: 48, 68
 Conductor: 52, 68
-ElectronTail: 70, 68
+Conductor: 70, 68
 Conductor: 82, 68
 ElectronHead: 84, 68
 Conductor: 93, 68
@@ -533,7 +533,7 @@ Conductor: 47, 69
 Conductor: 53, 69
 ElectronTail: 60, 69
 Conductor: 69, 69
-ElectronHead: 71, 69
+Conductor: 71, 69
 Conductor: 82, 69
 Conductor: 84, 69
 Conductor: 93, 69
@@ -577,7 +577,7 @@ Conductor: 49, 71
 Conductor: 51, 71
 Conductor: 52, 71
 Conductor: 60, 71
-Conductor: 69, 71
+ElectronHead: 69, 71
 Conductor: 71, 71
 Conductor: 82, 71
 Conductor: 84, 71
@@ -594,7 +594,7 @@ Conductor: 23, 72
 Conductor: 38, 72
 Conductor: 49, 72
 Conductor: 51, 72
-Conductor: 70, 72
+ElectronTail: 70, 72
 Conductor: 82, 72
 Conductor: 84, 72
 Conductor: 93, 72
@@ -613,7 +613,7 @@ Conductor: 83, 73
 Conductor: 103, 73
 Conductor: 104, 73
 Conductor: 105, 73
-Conductor: 108, 73
+ElectronHead: 108, 73
 Conductor: 111, 73
 Conductor: 112, 73
 Conductor: 113, 73
@@ -624,13 +624,13 @@ Conductor: 22, 74
 Conductor: 50, 74
 Conductor: 104, 74
 Conductor: 106, 74
-Conductor: 107, 74
-Conductor: 108, 74
-Conductor: 109, 74
+ElectronTail: 107, 74
+ElectronHead: 108, 74
+ElectronTail: 109, 74
 Conductor: 110, 74
 Conductor: 112, 74
 Conductor: 18, 75
-Conductor: 108, 75
+ElectronHead: 108, 75
 Conductor: 19, 76
 Conductor: 108, 76
 Conductor: 20, 77
