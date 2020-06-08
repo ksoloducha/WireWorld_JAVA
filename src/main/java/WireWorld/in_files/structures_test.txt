@@ -1,21 +1,21 @@
-100 100
-ClockGen2 4 3
+70 70
+ClockGen2 4 3 
 LongConductor 9 3
 Diode 13 3
 LongConductor 18 3
-ClockGen2 4 8
+ClockGen2 4 8 
 LongConductor 9 8
 Diode 14 8 2
 LongConductor 18 8
-ClockGen2 4 16
+ClockGen2 4 16 
 LongConductor 9 17
-ClockGen2 4 21
+ClockGen2 4 21 
 LongConductor 9 20
 AND 20 20
 LongConductor 29 21
-ClockGen2 4 30
+ClockGen2 4 30 
 LongConductor 9 31
-ClockGen3 6 35
+ClockGen3 6 35 
 Conductor 10 34
 Conductor 11 34
 AND 20 34
@@ -34,14 +34,30 @@ Conductor 7 54
 Conductor 8 55
 OR 11 56
 LongConductor 16 56
-ClockGen2 4 67
-ClockGen2 4 73
-Conductor 7 68
-Conductor 7 72
-XOR 12 70
-LongConductor 18 70
-ClockGen2 4 78
-ClockGen3 7 86 3
-Conductor 7 79
-XOR 12 81
-LongConductor 18 81
+ClockGen2 40 7 
+ClockGen2 40 13 
+Conductor 43 8 
+Conductor 43 12 
+XOR 48 10
+LongConductor 54 10
+ClockGen2 40 18
+ClockGen3 43 26 3
+Conductor 43 19
+XOR 48 21
+LongConductor 54 21
+ClockGen2 40 35
+ClockGen2 40 41
+Conductor 43 35
+Conductor 43 41
+Conductor 44 36
+Conductor 44 40
+NAND 51 38
+LongConductor 60 38
+ClockGen2 40 49
+ClockGen3 43 59 3
+Conductor 43 49
+Conductor 43 55
+Conductor 44 50
+Conductor 44 54
+NAND 51 52
+LongConductor 60 52
