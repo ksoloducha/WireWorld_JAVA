@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public enum  StructureType {
 
-    Diode, AND, OR, XOR, ClockGen1, ClockGen2, ClockGen3, LongConductor;
+    Diode, AND, OR, XOR, ClockGen1, ClockGen2, ClockGen3, LongConductor, NAND;
 
     public static boolean isStructureType(String name) {
 
@@ -172,6 +172,57 @@ public enum  StructureType {
                               };
         return tab;
     }
+    
+    private static int[] setNANDInCellSet (int x, int y){
+        int[] tab = new int[] {x-6, y-1, 3,
+                               x-6, y+1, 3,
+                               x-5, y-1, 3,
+                               x-5, y+1, 3,
+                               x-4, y-2, 3,
+                               x-4, y+2, 3,
+                               x-3, y-3, 3,
+                               x-3, y, 3,
+                               x-3, y+3, 3,
+                               x-2, y-4, 3,
+                               x-2, y-1, 3,
+                               x-2, y+1, 3,
+                               x-2, y+4, 3,
+                               x-1, y-5, 3,
+                               x-1, y-1, 3,
+                               x-1, y+1, 2,
+                               x-1, y+5, 3,
+                               x, y-6, 3,
+                               x, y, 1,
+                               x, y+6, 3,
+                               x+1, y-6, 3,
+                               x+1, y-1, 3,
+                               x+1, y+1, 3,
+                               x+1, y+6, 3,
+                               x+2, y-6, 3,
+                               x+2, y-4, 3,
+                               x+2, y-2, 3,
+                               x+2, y+2, 3,
+                               x+2, y+4, 3,
+                               x+2, y+6, 3,
+                               x+3, y-5, 3,
+                               x+3, y-4, 3,
+                               x+3, y-3, 3,
+                               x+3, y, 3,
+                               x+3, y+3, 3,
+                               x+3, y+4, 3,
+                               x+3, y+5, 3,
+                               x+4, y-4, 3,
+                               x+4, y-2, 3,
+                               x+4, y-1, 3,
+                               x+4, y, 3,
+                               x+4, y+1, 3,
+                               x+4, y+2, 3,
+                               x+4, y+4, 3,
+                               x+5, y, 3,
+                               x+6, y, 3
+                              };
+        return tab;
+    }
 
     public static int[] getSetupStructureInCellSet (int x, int y, int z, String structure) {
 
@@ -202,6 +253,9 @@ public enum  StructureType {
         }
         if (structure.equalsIgnoreCase(structures[7].toString())){
             tab = setLongConductorInCellSet(x, y);
+        }
+        if (structure.equalsIgnoreCase(structures[8].toString())){
+            tab = setNANDInCellSet(x, y);
         }
         tab = setDirection(tab, x, y, z);
         return tab;
