@@ -13,7 +13,7 @@ public class ParametersGUI extends JFrame {
     JList fileList;
     JScrollPane scroller;
 
-    String[] files = {"default_input.txt", "blah", "direct_test.txt", "structures_test.txt"};
+    String[] files = {"default_input.txt", "example_file.txt", "direct_test.txt", "structures_test.txt"};
 
     private int numberOfGenerations;
     private final int deafultNumberOfGenerations;
@@ -34,22 +34,22 @@ public class ParametersGUI extends JFrame {
         //contains all components
         JPanel thePanel = new JPanel();
         thePanel.setBorder(BorderFactory.createEmptyBorder(10, WIDTH + 10, ABORT, HEIGHT + 10));
-        
+
         //creating panel elements
-        fileLabel = new JLabel("Input file");      
+        fileLabel = new JLabel("Input file");
 
         //creating a List Box
-        fileList = new JList(files);        
+        fileList = new JList(files);
         //define size of each cell
         fileList.setFixedCellHeight(30);
-        fileList.setFixedCellWidth(220);    
-        
+        fileList.setFixedCellWidth(220);
+
         myFileLabel = new JLabel("  My input file");
         fileTextField = new JTextField("", 15);
-        
+
         generationsLabel = new JLabel("Number of generations");
         generationsTextField = new JTextField("", 15);
-        
+
         set = new JButton("      set       ");
         setDefault = new JButton("set default");
 
@@ -95,20 +95,20 @@ public class ParametersGUI extends JFrame {
                 try {
                     //user can insert both parameters, one or choose default values
                     if(! fileList.isSelectionEmpty() && fileTextField.getText().equals("")){
-                        
+
                         inputFile = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\" + fileList.getSelectedValue();
 
                         if (!(new File(inputFile).exists())) {
                             throw new Exception(fileList.getSelectedValue() + " does not exist");
                         }
-                        
+
                         if(! generationsTextField.getText().equals(""))
                             numberOfGenerations = Integer.parseInt(generationsTextField.getText());
                         else
                             numberOfGenerations = deafultNumberOfGenerations;
-                        
+
                         ParametersGUI.super.dispose();
-                    }                    
+                    }
                     else if (fileTextField.getText().equals("") && generationsTextField.getText().equals("")) {
                         JOptionPane.showMessageDialog(ParametersGUI.this, "Please enter the right info or choose \"Set defalut\" button", "Error", JOptionPane.ERROR_MESSAGE);
                     } else if (fileTextField.getText().equals("")) {

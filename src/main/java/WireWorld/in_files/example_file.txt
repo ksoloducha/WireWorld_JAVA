@@ -1,0 +1,89 @@
+51 45
+ClockGen3  4 2
+LongConductor 9 2
+Conductor 8 3
+Conductor 8 4
+LongConductor 5 5
+Conductor 3 6
+LongConductor 5 7
+LongConductor 7 9 1
+Conductor 8 11
+Conductor 9 11
+LongConductor 10 9 1
+Conductor 10 7
+Diode 12 7
+Conductor 12 1
+Conductor 13 1
+Conductor 14 1
+Conductor 15 1
+Diode 16 3 3
+Conductor 16 6
+Conductor 15 7
+LongConductor 18 8
+LongConductor 19 1
+LongConductor 21 3 1
+Conductor 21 8
+OR 25 7
+Conductor 28 7
+AND 37 10
+Conductor 28 11
+Conductor 28 15
+Conductor 28 12
+Conductor 27 13
+Conductor 27 14
+ElectronTail 29 13
+ElectronHead 29 14
+LongConductor 6 13 1
+LongConductor 48 11
+Conductor 0 11
+Conductor 1 12
+Conductor 2 13
+Conductor 3 14
+LongConductor 4 17 1
+Conductor 7 16
+Conductor 8 16
+Conductor 9 17
+Conductor 8 18
+Conductor 7 19
+NAND 6 25 3
+Conductor 6 32
+LongConductor 6 35 1
+LongConductor 8 37
+LongConductor 13 37
+Diode 17 37
+LongConductor 20 34 1
+LongConductor 20 40 1
+LongConductor 23 37
+LongConductor 23 31
+LongConductor 26 34 1
+ClockGen1 23 34
+LongConductor 23 43
+LongConductor 26 40 1
+LongConductor 29 37
+ClockGen1 23 40
+LongConductor 34 37
+LongConductor 37 35 1
+LongConductor 37 30 1
+LongConductor 34 28
+LongConductor 40 28
+Diode 43 28
+Diode 49 28 2
+LongConductor 46 26 1
+Conductor 45 23
+Conductor 47 23
+Conductor 46 22
+Conductor 44 22
+Conductor 48 22
+Conductor 45 21
+Conductor 47 21
+Conductor 43 21
+Conductor 49 21
+Conductor 46 20
+Conductor 44 20
+Conductor 48 20
+Conductor 45 19
+Conductor 47 19
+Conductor 46 18
+LongConductor 31 26 1
+LongConductor 28 23
+XOR 22 23 2
