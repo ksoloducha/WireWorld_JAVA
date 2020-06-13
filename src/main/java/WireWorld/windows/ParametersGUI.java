@@ -13,7 +13,7 @@ public class ParametersGUI extends JFrame {
     JList fileList;
     JScrollPane scroller;
 
-    String[] files = {"default_input.txt", "example_file.txt", "direct_test.txt", "structures_test.txt"};
+    String[] files = {"default_file.txt", "example_file.txt", "direct_test.txt", "structures_test.txt"};
 
     private int numberOfGenerations;
     private final int deafultNumberOfGenerations;
