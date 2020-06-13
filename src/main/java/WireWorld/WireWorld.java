@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class WireWorld {
 
-    private static String inputFileName = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\default_input.txt";
+    private static String inputFileName = "..\\WireWorld_JAVA-master\\src\\main\\java\\WireWorld\\in_files\\default_file.txt";
     private static int numberOfGenerations;
 
     public static void main(String[] args) {
