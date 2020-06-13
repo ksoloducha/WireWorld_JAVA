@@ -18,6 +18,7 @@ public enum  StructureType {
         return false;
     }
 
+    //methods giving coordinates of cells of given structure in relation to given coordinates
     public static int[] setDiodeInCellSet (int x, int y) {
 
         int[] tab = new int[] {x-1, y, 3,
@@ -31,6 +32,7 @@ public enum  StructureType {
         return tab;
     }
 
+    // logic gate AND
     private static int[] setANDInCellSet (int x, int y) {
         int[] tab = new int[] {x-8, y-3, 3,
                                x-8, y, 3,
@@ -77,6 +79,7 @@ public enum  StructureType {
         return tab;
     }
 
+    // logic gate OR
     private static int[] setORInCellSet (int x, int y) {
         int[] tab = new int[] {x-3, y-1, 3,
                                x-3, y+1, 3,
@@ -95,6 +98,7 @@ public enum  StructureType {
         return tab;
     }
 
+    // logic gate XOR
     public static int[] setXORInCellSet (int x, int y) {
         int[] tab = new int[] {x-4, y-1, 3,
                                x-4, y+1, 3,
@@ -123,6 +127,7 @@ public enum  StructureType {
         return tab;
     }
 
+    //clock generators
     private static int[] setClockGen1InCellSet (int x, int y) {
         int[] tab = new int[] {x-1, y, 2,
                                x, y-1, 1,
@@ -161,6 +166,7 @@ public enum  StructureType {
         return tab;
     }
 
+    // longitudinal conductor
     private static int[] setLongConductorInCellSet (int x, int y){
         int[] tab = new int[] {x-2, y, 3,
                                x-1, y, 3,
@@ -170,7 +176,8 @@ public enum  StructureType {
                               };
         return tab;
     }
-    
+
+    // logic gate NAND
     private static int[] setNANDInCellSet (int x, int y){
         int[] tab = new int[] {x-6, y-1, 3,
                                x-6, y+1, 3,
@@ -264,17 +271,18 @@ public enum  StructureType {
             return tab;
         }
         if (z == 1){
-            return setDirectionUp(tab, x, y);
+            return setDirectionHorizontal(setDirection90(tab, x, y),x);
         }
         if (z == 2){
             return setDirectionHorizontal(tab, x);
         }
         if (z == 3){
-            return setDirectionVertical(setDirectionUp(tab, x, y), y);
+            return setDirectionVertical(setDirection90(tab, x, y), y);
         }
         return null;
     }
 
+    // changing direction horizontally
     private static int[] setDirectionHorizontal(int[] tab, int x){
         int tmp[] = Arrays.copyOf(tab, tab.length);
         for(int i = 0; i < tab.length; i=i+3){
@@ -284,6 +292,7 @@ public enum  StructureType {
         return tmp;
     }
 
+    // changing direction vertically
     private static int[] setDirectionVertical(int[] tab, int y){
         int tmp[] = Arrays.copyOf(tab, tab.length);
         for(int i = 0; i < tab.length; i=i+3){
@@ -292,8 +301,8 @@ public enum  StructureType {
         }
         return tmp;
     }
-
-    private static int[] setDirectionUp(int[] tab, int x, int y){
+    // rotation of 90 degrees (turn right)
+    private static int[] setDirection90(int[] tab, int x, int y){
         int tmp[] = Arrays.copyOf(tab, tab.length);
         for(int i = 0; i < tab.length; i=i+3){
             int xd = tab[i] - x;
