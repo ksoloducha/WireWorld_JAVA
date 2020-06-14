@@ -18,7 +18,7 @@ public class WireWorld {
 
         CellSet cellSet = new CellSet();
 
-        ParametersGUI gui = new ParametersGUI(50, inputFileName);
+        ParametersGUI gui = new ParametersGUI(200, inputFileName);
 
         WindowListener listener = new WindowAdapter() {
             public void windowClosed(WindowEvent evt) {
