@@ -19,7 +19,7 @@ public enum  StructureType {
     }
 
     //methods giving coordinates of cells of given structure in relation to given coordinates
-    public static int[] setDiodeInCellSet (int x, int y) {
+    private static int[] setDiodeInCellSet (int x, int y) {
 
         int[] tab = new int[] {x-1, y, 3,
                                x, y-1, 3,
@@ -99,7 +99,7 @@ public enum  StructureType {
     }
 
     // logic gate XOR
-    public static int[] setXORInCellSet (int x, int y) {
+    private static int[] setXORInCellSet (int x, int y) {
         int[] tab = new int[] {x-4, y-1, 3,
                                x-4, y+1, 3,
                                x-3, y-1, 3,
